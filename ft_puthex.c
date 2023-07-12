@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlchar.c                                      :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vade-oli <@cambier.vo@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 18:07:53 by vade-oli          #+#    #+#             */
-/*   Updated: 2023/07/11 18:11:53 by vade-oli         ###   ########.fr       */
+/*   Created: 2023/07/12 15:07:56 by vade-oli          #+#    #+#             */
+/*   Updated: 2023/07/12 18:50:17 by vade-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putlchar(char x, int *len)
+void	ft_puthex(unsigned int x, char *b, int *len)
 {
-	*len += 1;
-	write(1, &x, 1);
-}
+	long int	xx;
 
+	xx = x;
+	if (xx / 16 == 0)
+		ft_putchar(b[xx % 16], len);
+	else
+	{
+		ft_puthex(xx / 16, b, len);
+		ft_putchar(b[xx % 16], len);
+	}
+}
